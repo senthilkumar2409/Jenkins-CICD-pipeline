@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ekart
-          image: 975049977826.dkr.ecr.us-east-1.amazonaws.com/shopping_docker:14 # Image that will be used to containers in the cluster
+          image: ${DOCKER_REPO}/${IMAGE_NAME}:${BUILD_NUMBER} # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8070 # The port that the container is running on in the cluster
