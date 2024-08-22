@@ -24,6 +24,15 @@
     
    ![image](https://github.com/user-attachments/assets/c30afc8c-03cc-490a-b5ca-b86c4a3e3e90)
    ![image](https://github.com/user-attachments/assets/079ccfcd-dde6-4834-8461-19ed54451f41)
+   
+### Setup Sonarqube and generate a token:
+   Go to Manage Jenkins, system page, and scroll down to add sonarqube server,
+   * Add SonarQube: Click Add SonarQube.
+      Name: Provide a name for your SonarQube server, e.g., sonarqube-server.
+      Server URL: Enter the URL where your SonarQube server is accessible, e.g., http://localhost:9000.
+   
+   <img width="1280" alt="Screenshot 2024-08-12 at 8 13 12 PM" src="https://github.com/user-attachments/assets/e5e4d250-e0cd-46f0-8861-dd3c0fc50c03">
+
 
 
 
