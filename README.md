@@ -1,1 +1,1 @@
-# Jenkins CI/CD pipeline to build, test and deploy a application in aws eks(elastic kubernetes cluster):
+# Jenkins CI/CD pipeline to build, test and deploy an application in aws eks:
