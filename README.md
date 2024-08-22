@@ -17,5 +17,5 @@
    4. aws ecr - It generates the docker authentication token from aws credentials to access ECR repository
    5. Sonarqube Scanner
 
-      ![image](https://github.com/user-attachments/assets/751d7010-cc41-429b-a266-a9f19981077e)
+   ![image](https://github.com/user-attachments/assets/751d7010-cc41-429b-a266-a9f19981077e)
 
