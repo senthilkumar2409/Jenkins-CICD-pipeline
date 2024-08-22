@@ -138,13 +138,18 @@ After the jenkins pipeline execution the containerized applicarion deployed in a
 
    ![image](https://github.com/user-attachments/assets/a5c9e083-eff2-4ac8-88c8-58ddbeabd28f)
 
-### ALB provisioning:
+### pipeline overview   
+
+   ![image](https://github.com/user-attachments/assets/f97e441e-665e-4e24-bcad-c982aa42c60b)
+
+
+## ALB provisioning:
 
 Once the ingress is created in aws eks cluster the ALB ingress controller automatically fetch the details from ingress and it will starts create the application load balancer in aws, As shown below load balacer is provisioned.
 
    ![image](https://github.com/user-attachments/assets/40ada1c8-da5b-4115-8390-3c39a36098ab)
 
-### Accessing application:
+## Accessing application:
 
 Access your Java Application in the browser using DNS name of application load balancer.
 
