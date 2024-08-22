@@ -25,7 +25,7 @@
    ![image](https://github.com/user-attachments/assets/c30afc8c-03cc-490a-b5ca-b86c4a3e3e90)
    ![image](https://github.com/user-attachments/assets/079ccfcd-dde6-4834-8461-19ed54451f41)
    
-### Setup Sonarqube and generate a token:
+### Setup Sonarqube server and generate a token:
    Go to Manage Jenkins, system page, and scroll down to add sonarqube server,
    * Add SonarQube: Click Add SonarQube.
      
@@ -33,7 +33,13 @@
      
       2.Server URL: Enter the URL where your SonarQube server is accessible, e.g., http://<server-url>:9000.
    
-   <img width="1280" alt="Screenshot 2024-08-12 at 8 13 12 PM" src="https://github.com/user-attachments/assets/e5e4d250-e0cd-46f0-8861-dd3c0fc50c03">
+   * Generate a sonarqube token.
+
+      1.In the My Account page, navigate to the Security tab.
+     
+      2.Under the Tokens section, you’ll see an option to Generate Tokens.
+     
+      3.Enter a name for your token in the Token Name field. This name is for your reference and helps you identify the token later (e.g., JenkinsCI) and Click the Generate button.
 
 
 
