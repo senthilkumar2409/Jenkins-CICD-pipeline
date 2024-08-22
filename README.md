@@ -6,3 +6,15 @@
 2. Setup a sonarqube server as a docker container in ec2 instance
 3. Install docker in jenkins server
 4. Provision a aws eks cluster in aws cloud (Used terraform to provision a eks cluster - https://github.com/senthilkumar2409/terraform-cicd-eks terraform configuration files exist in this repo)
+
+## 1. Jenkins pipeline setup:
+
+* Install Plugins
+   Install plugins to integrate Jenkins with GitHub, Maven, and EC2. Go to Manage Jenkins, and select Manage plugins. Under available plugins search for the below plugins and Install without restart
+   1. Git
+   2. maven
+   3. docker
+   4. aws ecr - It generates the docker authentication token from aws credentials to access ECR repository
+   5. Sonarqube Scanner
+  
+<img width="1280" alt="Screenshot 2024-08-12 at 8 02 26 PM" src="https://github.com/user-attachments/assets/3b4970d8-75a1-43ad-8220-d981dfade439">
