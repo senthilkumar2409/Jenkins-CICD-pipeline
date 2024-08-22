@@ -11,10 +11,11 @@
 
 * Install Plugins
    Install plugins to integrate Jenkins with GitHub, Maven, and EC2. Go to Manage Jenkins, and select Manage plugins. Under available plugins search for the below plugins and Install without restart
-   1. Git
-   2. maven
-   3. docker
-   4. aws ecr - It generates the docker authentication token from aws credentials to access ECR repository
-   5. Sonarqube Scanner
+   *. Git
+   *. maven
+   *. docker
+   *. aws ecr - It generates the docker authentication token from aws credentials to access ECR repository
+   *. Sonarqube Scanner
   
-<img width="1280" alt="Screenshot 2024-08-12 at 8 02 26 PM" src="https://github.com/user-attachments/assets/3b4970d8-75a1-43ad-8220-d981dfade439">
+<img width="1280" alt="Screenshot 2024-08-12 at 8 04 53 PM" src="https://github.com/user-attachments/assets/7aee7b09-bc2d-45ea-b389-16ee1db8cd39">
+
