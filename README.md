@@ -144,6 +144,13 @@ Once the ingress is created in aws eks cluster the ALB ingress controller automa
 
    ![image](https://github.com/user-attachments/assets/40ada1c8-da5b-4115-8390-3c39a36098ab)
 
+### Accessing application:
+
+Access your Java Application in the browser using DNS name of application load balancer.
+
+   ![image](https://github.com/user-attachments/assets/f7cd9be1-00fe-48ce-80eb-7f7ea7370e71)
+
+
 
    
 
