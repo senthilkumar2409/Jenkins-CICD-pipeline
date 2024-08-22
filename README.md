@@ -21,8 +21,9 @@
 
 ### Configure maven and sonarqube:
     Go to Manage Jenkins, select tool configuration, and scroll down to add Maven and Sonarqube path, steps as shown below.
-    ![image](https://github.com/user-attachments/assets/c30afc8c-03cc-490a-b5ca-b86c4a3e3e90)
-    ![image](https://github.com/user-attachments/assets/079ccfcd-dde6-4834-8461-19ed54451f41)
+    
+   ![image](https://github.com/user-attachments/assets/c30afc8c-03cc-490a-b5ca-b86c4a3e3e90)
+   ![image](https://github.com/user-attachments/assets/079ccfcd-dde6-4834-8461-19ed54451f41)
 
 
 
