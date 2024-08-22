@@ -41,6 +41,9 @@
      
       3.Enter a name for your token in the Token Name field. This name is for your reference and helps you identify the token later (e.g., JenkinsCI) and Click the Generate button.
 
+ ### Credentials:
+     Store required credentials for jenkins to access a necessary tools or application like git, soanrqube server and aws(aws credentials to provide access to ecr repository and eks cluster) credentials 
+
 ## 2. Jeninsfile:
 
 ```groovy
