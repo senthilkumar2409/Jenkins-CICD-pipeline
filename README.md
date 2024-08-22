@@ -134,6 +134,10 @@ pipeline {
     }
 }
 ```
+After the jenkins pipeline execution the containerized applicarion deployed in aws eks cluster.
+
+   ![image](https://github.com/user-attachments/assets/a5c9e083-eff2-4ac8-88c8-58ddbeabd28f)
+
 
 
 
