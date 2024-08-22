@@ -30,6 +30,7 @@
    * Add SonarQube: Click Add SonarQube.
      
       1.Name: Provide a name for your SonarQube server, e.g., sonarqube-server.
+     
       2.Server URL: Enter the URL where your SonarQube server is accessible, e.g., http://<server-url>:9000.
    
    <img width="1280" alt="Screenshot 2024-08-12 at 8 13 12 PM" src="https://github.com/user-attachments/assets/e5e4d250-e0cd-46f0-8861-dd3c0fc50c03">
