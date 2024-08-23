@@ -5,7 +5,7 @@
 1. Setup a Jenkins server on aws ec2 instance.
 2. Setup a sonarqube server as a docker container in ec2 instance
 3. Install docker in jenkins server
-4. Provision a aws eks cluster in aws cloud (Used terraform to provision a eks cluster - [EKS cluster creation using terraform ](https://github.com/senthilkumar2409/terraform-cicd-eks) terraform configuration files exist in this repo)
+4. Provision a aws eks cluster in aws cloud (Used terraform to provision a eks cluster - [EKS cluster creation using terraform ](https://github.com/senthilkumar2409/terraform-cicd-eks) configuration files exist in this repo)
 5. Install trivy in jenkins server - trivy is used to scan a docker image for vulnerabilities 
 
 ## 1. Jenkins pipeline setup:
