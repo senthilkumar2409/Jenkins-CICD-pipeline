@@ -9,7 +9,7 @@ pipeline {
     environment{
         DOCKER_IMAGE = 'shopping_cart'
         DOC_ECR_REPO = '975049977826.dkr.ecr.us-east-1.amazonaws.com'
-    }
+    } 
 
     stages {
         // stage('git checkout') {
