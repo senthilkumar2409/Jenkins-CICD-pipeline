@@ -11,11 +11,11 @@ pipeline {
     }
 
     stages {
-        stage('git checkout') {
-            steps {
-                git credentialsId: 'cred', url: 'https://github.com/senthilkumar2409/shopping_cart.git'
-            }
-        }
+        // stage('git checkout') {
+        //     steps {
+        //         git credentialsId: 'cred', url: 'https://github.com/senthilkumar2409/shopping_cart.git'
+        //     }
+        // }
         stage('maven build') {
             steps {
                 sh 'mvn package install -Dmaven.test.skip=true' 
