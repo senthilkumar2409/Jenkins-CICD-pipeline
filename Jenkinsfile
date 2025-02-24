@@ -12,12 +12,12 @@ pipeline {
         DOC_ECR_REPO = '975049977826.dkr.ecr.us-east-1.amazonaws.com'
     } 
 
-    stages {
-        // stage('git checkout') {
-        //     steps {
-        //         git credentialsId: 'cred', url: 'https://github.com/senthilkumar2409/shopping_cart.git'
-        //     }
-        // }
+    // stages {
+    //     // stage('git checkout') {
+    //     //     steps {
+    //     //         git credentialsId: 'cred', url: 'https://github.com/senthilkumar2409/shopping_cart.git'
+    //     //     }
+    //     // }
         stage('maven build') {
             steps {
                 sh 'mvn package install -Dmaven.test.skip=true' 
@@ -59,19 +59,19 @@ pipeline {
                 }
             }
         }
-        stage('Update Kube manifest file') {
-            steps {
-                script{
-                    // sh '''
-                    //     export DOCKER_REPO=${DOC_ECR_REPO}
-                    //     export IMAGE_NAME=${DOCKER_IMAGE}
-                    //     export IMAGE_TAG=${BUILD_NUMBER}
-                    //     envsubst < deploymentservice.yml > deployment.yaml
-                    // '''
+        // stage('Update Kube manifest file') {
+        //     steps {
+        //         script{
+        //             // sh '''
+        //             //     export DOCKER_REPO=${DOC_ECR_REPO}
+        //             //     export IMAGE_NAME=${DOCKER_IMAGE}
+        //             //     export IMAGE_TAG=${BUILD_NUMBER}
+        //             //     envsubst < deploymentservice.yml > deployment.yaml
+        //             // '''
 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
         stage('Deployment on EKS') {
             steps {
                 script{
