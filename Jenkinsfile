@@ -89,6 +89,7 @@ pipeline {
                   sh '''
                      aws eks --region us-east-1 update-kubeconfig --name terraform-prod
                      kubectl apply -f deployment.yaml -n kube-system
+                     kubectl --version
                      '''
                 }
             }
