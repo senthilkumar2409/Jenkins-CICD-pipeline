@@ -57,12 +57,12 @@ pipeline {
          stage('Update Kube manifest file') {
              steps {
                  script{
-                     // sh '''
-                     //     export DOCKER_REPO=${DOC_ECR_REPO}
-                     //     export IMAGE_NAME=${DOCKER_IMAGE}
-                     //     export IMAGE_TAG=${BUILD_NUMBER}
-                     //     envsubst < deploymentservice.yml > deployment.yaml
-                     // ''
+                      sh '''
+                          export DOCKER_REPO=${DOC_ECR_REPO}
+                          export IMAGE_NAME=${DOCKER_IMAGE}
+                          export IMAGE_TAG=${BUILD_NUMBER}
+                          envsubst < deploymentservice.yml > deployment.yaml
+                      ''
                  }
              }
          }
