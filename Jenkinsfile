@@ -67,7 +67,7 @@ pipeline {
                         git config user.name "senthilkumar2409"
                         git pull origin main
                         git add deployment.yaml
-                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                        git commit -m " deployment image to version ${BUILD_NUMBER}"
                         git push https://${GITHUB}@github.com/senthilkumar2409/argocd_repo HEAD:main
                     '''
                     }
