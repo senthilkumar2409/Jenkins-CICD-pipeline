@@ -63,7 +63,7 @@ pipeline {
                           export IMAGE_NAME=${DOCKER_IMAGE}
                           export IMAGE_TAG=${BUILD_NUMBER}
                           envsubst < deploymentservice.yml > deployment.yaml
-                      ''
+                      '''
                  }
              }
          }
@@ -73,7 +73,7 @@ pipeline {
                 script{
                   sh '''
                      aws eks --region us-east-1 update-kubeconfig --name terraform-prod
-                     '''
+                  '''
                 }
             }
         }
