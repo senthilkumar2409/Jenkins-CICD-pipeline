@@ -1,10 +1,10 @@
 pipeline {
     agent AGENT
      
-    // tools {
-    //     maven 'maven3' 
-    //     //Docker 'docker'// This should match the name of the Maven tool in the Global Tool Configuration
-    // }
+    tools {
+        maven 'maven3' 
+        //Docker 'docker'// This should match the name of the Maven tool in the Global Tool Configuration
+    }
     
     environment{
         
@@ -12,12 +12,7 @@ pipeline {
         DOC_ECR_REPO = '975049977826.dkr.ecr.us-east-1.amazonaws.com'
     } 
 
-    // stages {
-    //     // stage('git checkout') {
-    //     //     steps {
-    //     //         git credentialsId: 'cred', url: 'https://github.com/senthilkumar2409/shopping_cart.git'
-    //     //     }
-    //     // }
+     stages {
         stage('maven build') {
             steps {
                 sh 'mvn package install -Dmaven.test.skip=true' 
