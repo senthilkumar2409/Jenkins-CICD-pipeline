@@ -62,12 +62,11 @@ pipeline {
                         git remote add origin git@github.com:senthilkumar2409/argocd_repo.git
                         git add deployment.yaml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                        git push origin master  
+                        git push origin master
                     '''
                  }
              }
          }
-    
         stage('workspace cleanup') {
             steps {
                 script{
