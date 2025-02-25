@@ -12,7 +12,7 @@ pipeline {
         DOC_ECR_REPO = '975049977826.dkr.ecr.us-east-1.amazonaws.com'
     } 
 
-     stages {
+    stages {
         stage('maven build') {
             steps {
                 sh 'mvn package install -Dmaven.test.skip=true' 
@@ -78,5 +78,4 @@ pipeline {
             }
         }
     }
-
-
+}
