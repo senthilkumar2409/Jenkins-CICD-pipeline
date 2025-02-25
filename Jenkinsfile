@@ -65,10 +65,10 @@ pipeline {
                         git init
                         git config user.email "senthil24091999@gmail.com"
                         git config user.name "senthilkumar2409"
-                        git pull origin master
+                      //  git pull origin master
                         git add deployment.yaml
                         git commit -m " deployment image to version ${BUILD_NUMBER}"
-                        git push https://${GITHUB}@github.com/senthilkumar2409/argocd_repo HEAD:master
+                        git push https://${GITHUB}@github.com/senthilkumar2409/Jenkins-CICD-pipeline HEAD:master
                     '''
                     }
                  }
