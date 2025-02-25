@@ -26,7 +26,7 @@ pipeline {
         }
         stage('docker image scan') {
             steps {
-                sh 'trivy -f table -o scan_report.txt image ${DOCKER_IMAGE}:latest' 
+                sh 'trivy -f table -o scan_report.txt image ${DOCKER_IMAGE}:${BUILD_NUMBER}' 
             }
         }
         stage('Login to ecr registry and docker push') {
