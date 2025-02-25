@@ -62,6 +62,7 @@ pipeline {
     // some block
 
                       sh '''
+                        git init
                         git config user.email "senthil24091999@gmail.com"
                         git config user.name "senthilkumar2409"
                         git pull origin main
