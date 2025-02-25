@@ -55,12 +55,10 @@ pipeline {
              }
          }
     
-        stage('Deployment on EKS') {
+        stage('workspace cleanup') {
             steps {
                 script{
-                  sh '''
-                     aws eks --region us-east-1 update-kubeconfig --name terraform-prod
-                  '''
+                  cleanWs()
                 }
             }
         }
