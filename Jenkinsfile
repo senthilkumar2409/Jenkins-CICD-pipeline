@@ -19,19 +19,6 @@ pipeline {
                 sh 'mvn package install -Dmaven.test.skip=true' 
             }
         }
-        stage('sonarqube analysis') {
-            environment{
-                    SonarScanner = tool 'sonar-scanner6'
-                }
-            steps {
-                withSonarQubeEnv("sonar-scanner-server") {
-    // some block
-                sh ''' $SonarScanner/bin/sonar-scanner -Dsonar.projectName=shopping_cart \
-                -Dsonar.projectKey=shopping_cart \
-                -Dsonar.java.binaries=. '''
-                }
-            }
-        }
         stage('docker build') {
             steps {
                 sh 'docker build -f docker/Dockerfile -t ${DOCKER_IMAGE}:${BUILD_NUMBER} .' 
