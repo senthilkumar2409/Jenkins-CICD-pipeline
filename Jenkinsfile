@@ -42,38 +42,6 @@ pipeline {
                 }
             }
         }
-        
-        stage('Update Kube manifest file') {
-             steps {
-                 script{
-                      sh '''
-                          export DOCKER_REPO=${DOC_ECR_REPO}
-                          export IMAGE_NAME=${DOCKER_IMAGE}
-                          export IMAGE_TAG=${BUILD_NUMBER}
-                          envsubst < deploymentservice.yml > deployment.yaml
-                      '''
-                 }
-             }
-         }
-         stage('Push to github') {
-             steps {
-                 script{
-                    withCredentials([string(credentialsId: 'GITHUB ARGOCD', variable: 'GITHUB')]) {
-    // some block
-
-                      sh '''
-                        git init
-                        git config user.email "senthil24091999@gmail.com"
-                        git config user.name "senthilkumar2409"
-                      //  git pull origin master
-                        git add deployment.yaml
-                        git commit -m " deployment image to version ${BUILD_NUMBER}"
-                        git push https://${GITHUB}@github.com/senthilkumar2409/Jenkins-CICD-pipeline HEAD:master
-                    '''
-                    }
-                 }
-             }
-         }
         stage('workspace cleanup') {
             steps {
                 script{
