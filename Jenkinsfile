@@ -42,6 +42,7 @@ pipeline {
                 }
             }
         }
+        
          stage('Update Kube manifest file') {
              steps {
                  script{
