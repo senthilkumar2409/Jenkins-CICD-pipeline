@@ -45,8 +45,9 @@ pipeline {
         stage('workspace cleanup') {
             steps {
                 script{
+                  sh 'ls -lrta'
                   cleanWs()
-                  sh 'ls -lrt'
+                  sh 'ls -lrta'
                 }
             }
         }
