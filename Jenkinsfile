@@ -58,12 +58,15 @@ pipeline {
          stage('Push to github') {
              steps {
                  script{
+                    withCredentials([string(credentialsId: 'GITHUB ARGOCD', variable: 'GITHUB')]) {
+    // some block
+
                       sh '''
-                        git remote add origin git@github.com:senthilkumar2409/argocd_repo.git
                         git add deployment.yaml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                        git push origin master
+                        git push https://${GITHUB}@github.com/senthilkumar2409/$argocd_repo HEAD:main
                     '''
+                    }
                  }
              }
          }
