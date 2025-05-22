@@ -9,24 +9,63 @@ pipeline {
     
     environment{
         
-        DOCKER_IMAGE = 'shopping_cart'
+        IMAGE_NAME = 'shopping_cart'
+        IMAGE_TAG = "{BUILD_NUMBER}"
         DOC_ECR_REPO = '975049977826.dkr.ecr.us-east-1.amazonaws.com'
     } 
 
     stages {
-        stage('maven build') {
+        stage('build and test') {
             steps {
-                sh 'mvn package install -Dmaven.test.skip=true' 
+                sh 'mvn clean package' 
+            }
+        }
+        stage('SonarQube Analysis') {
+          steps {
+               withSonarQubeEnv('sonarqube') {
+                sh '''
+                     mvn sonar:sonar \
+                            -Dsonar.projectKey=voting-service \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.login=${SONAR_AUTH_TOKEN}
+                    '''
+                }
+            }
+        }
+        stage('Quality Gates') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Deploy Artifact to AWS CodeArtifact') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+                                  credentialsId: 'aws-codeartifact-creds', 
+                                  accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                                  secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    sh '''
+                        # Authenticate to CodeArtifact
+                        aws codeartifact login \
+                            --tool maven \
+                            --domain ${CODEARTIFACT_DOMAIN} \
+                            --repository ${CODEARTIFACT_REPOSITORY} \
+                            --region ${AWS_REGION}
+                        # Deploy artifact
+                        mvn deploy -DskipTests
+                    '''
+                }
             }
         }
         stage('docker build') {
             steps {
-                sh 'docker build -f docker/Dockerfile -t ${DOCKER_IMAGE}:${BUILD_NUMBER} .' 
+                sh 'docker build -f docker/Dockerfile -t ${IMAGE_NAME}:${IMAGE_TAG} .' 
             }
         }
         stage('docker image scan') {
             steps {
-                sh 'trivy -f table -o scan_report.txt image ${DOCKER_IMAGE}:${BUILD_NUMBER}' 
+                sh "trivy image --severity HIGH,CRITICAL --exit-code=1 --format table -o trivy-report.txt ${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
         stage('Login to ecr registry and docker push') {
@@ -42,14 +81,52 @@ pipeline {
                 }
             }
         }
-        stage('workspace cleanup') {
+        stage('update helm') {
             steps {
-                script{
-                  sh 'ls -lrta'
-                  cleanWs()
-                  sh 'ls -lrta'
+                script {
+                
+                        // curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+                        // chmod 700 get_helm.sh
+                        // ./get_helm.sh
+                        // ls -lrta
+                        // helm upgrade shoppingkart ./deployment/shoppingkart --set image.tag=${BUILD_NUMBER}
+                        //sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ${FILE_PATH}
+                       sh '''
+                        
+                        sed -i "s/tag: \".*\"/tag: \"$BUILD_NUMBER\"/" deployment/shoppingkart/values.yaml 
+                        cat ${FILE_PATH}
+
+                        '''
+                        //sed -i "s/tag: \\".*\\"/tag: \\"${BUILD_NUMBER}\\"/" ${FILE_PATH}
+                        // sed -i 's/tag: \\\".*\\\"/tag: \\\"${BUILD_NUMBER}\\\"/' ${FILE_PATH}
+                       // sed -i "s/tag: \\\".*\\\"/tag: \\\"${BUILD_NUMBER}\\\"/" ${FILE_PATH}
                 }
+            }
+                
+        }
+        stage('push to github') {
+            steps {
+          withCredentials([string(credentialsId: 'github-argocd', variable: 'Github')]) {
+             script {
+
+                sh 'git config --global user.name "senthilkumar2409"'
+                sh 'git config --global user.email "senthil24091999@gmail.com"'
+                sh 'git add ${FILE_PATH}'
+                sh 'git commit -m "updated the helm values.yaml file with ${BUILD_NUMBER}"'
+                sh 'git push https://$Github@github.com/senthilkumar2409/argocd_repo.git HEAD:master' 
+                 }
             }
         }
     }
+        
+        post {
+//     // success {
+//     //     slackSend(color: 'good', message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
+//     // }
+//     // failure {
+//     //     slackSend(color: 'danger', message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
+//     // }
+//     // aborted {
+//     //     slackSend(color: 'warning', message: "Pipeline Aborted: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}")
+          }
 }
