@@ -84,22 +84,12 @@ pipeline {
         stage('update helm') {
             steps {
                 script {
-                
-                        // curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-                        // chmod 700 get_helm.sh
-                        // ./get_helm.sh
-                        // ls -lrta
-                        // helm upgrade shoppingkart ./deployment/shoppingkart --set image.tag=${BUILD_NUMBER}
-                        //sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ${FILE_PATH}
                        sh '''
                         
                         sed -i "s/tag: \".*\"/tag: \"$BUILD_NUMBER\"/" deployment/shoppingkart/values.yaml 
                         cat ${FILE_PATH}
 
                         '''
-                        //sed -i "s/tag: \\".*\\"/tag: \\"${BUILD_NUMBER}\\"/" ${FILE_PATH}
-                        // sed -i 's/tag: \\\".*\\\"/tag: \\\"${BUILD_NUMBER}\\\"/' ${FILE_PATH}
-                       // sed -i "s/tag: \\\".*\\\"/tag: \\\"${BUILD_NUMBER}\\\"/" ${FILE_PATH}
                 }
             }
                 
@@ -120,13 +110,13 @@ pipeline {
     }
         
         post {
-//     // success {
-//     //     slackSend(color: 'good', message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
-//     // }
-//     // failure {
-//     //     slackSend(color: 'danger', message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
-//     // }
-//     // aborted {
-//     //     slackSend(color: 'warning', message: "Pipeline Aborted: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}")
+          success {
+              slackSend(color: 'good', message: "Pipeline Successfull: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
+          }
+          failure {
+              slackSend(color: 'danger', message: "Pipeline Failed: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}") 
+          }
+          aborted {
+              slackSend(color: 'warning', message: "Pipeline Aborted: ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}")
           }
 }
